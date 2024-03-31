@@ -1,6 +1,7 @@
 import threading
 from collections import deque
 import bluetooth
+from bluetooth import Protocols
 import array
 import datetime
 from time import sleep
@@ -9,7 +10,7 @@ from time import sleep
 class DiscoverDevices(threading.Thread):
     def __init__(self, parent):
         super().__init__()
-        self.socket = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
+        self.socket = bluetooth.BluetoothSocket(Protocols.RFCOMM)
         self.device_list = []
         self.parent = parent
         self.running = True
@@ -45,7 +46,7 @@ class SendData(threading.Thread):
 
     def run(self):
         try:
-            self.socket = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
+            self.socket = bluetooth.BluetoothSocket(Protocols.RFCOMM)
             self.socket.bind(("", bluetooth.PORT_ANY))
             self.socket.listen(5)
             print(self.uuid)
@@ -104,7 +105,7 @@ class GetData(threading.Thread):
         self.package = []
         self.chunk = ''
         self.error = False
-        self.socket = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
+        self.socket = bluetooth.BluetoothSocket()
         self.do_save = True
         if side == '0':
             self.do_save = False

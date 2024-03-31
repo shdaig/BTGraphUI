@@ -93,9 +93,9 @@ class MainWindow:
         img_lamp_on_raw = Image.open('pictures/lamp_on.png')
         k = img_lamp_off_raw.height / 39
         img_lamp_off_raw = img_lamp_off_raw.resize((int(img_lamp_off_raw.width / k),
-                                                    int(img_lamp_off_raw.height / k)), Image.ANTIALIAS)
+                                                    int(img_lamp_off_raw.height / k)), Image.LANCZOS)
         img_lamp_on_raw = img_lamp_on_raw.resize((int(img_lamp_on_raw.width / k),
-                                                  int(img_lamp_on_raw.height / k)), Image.ANTIALIAS)
+                                                  int(img_lamp_on_raw.height / k)), Image.LANCZOS)
         self.img_lamp_off = ImageTk.PhotoImage(img_lamp_off_raw)
         self.img_lamp_on = ImageTk.PhotoImage(img_lamp_on_raw)
 
